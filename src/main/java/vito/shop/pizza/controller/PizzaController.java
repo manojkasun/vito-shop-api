@@ -1,6 +1,7 @@
 package vito.shop.pizza.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vito.shop.pizza.payload.PizzaDto;
 import vito.shop.pizza.payload.PizzaResponse;
@@ -17,7 +18,7 @@ public class PizzaController {
     private PizzaService pizzaService;
 
 
-    
+
     //get all pizza endpoint
     @GetMapping("all")
     public PizzaResponse getAllPizzas(
@@ -35,4 +36,8 @@ public class PizzaController {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PizzaDto> getPostById(@PathVariable(name = "id") long id){
+        return ResponseEntity.ok(pizzaService.getPizzaById(id));
+    }
 }

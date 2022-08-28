@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import vito.shop.pizza.entity.Pizza;
+import vito.shop.pizza.exception.PizzaNotFoundException;
 import vito.shop.pizza.payload.PizzaDto;
 import vito.shop.pizza.payload.PizzaResponse;
 import vito.shop.pizza.repository.PizzaRepository;
@@ -52,6 +53,12 @@ public class PizzaServiceImpl implements PizzaService {
     public List<PizzaDto> getAll() {
         List<Pizza> pizzas = pizzaRepository.findAll();
         return pizzas.stream().map(pizza -> mapToDto(pizza)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PizzaDto getPizzaById(Long id) {
+        Pizza pizza = pizzaRepository.findById(id).orElseThrow(() -> new PizzaNotFoundException());
+        return mapToDto(pizza);
     }
 
 
