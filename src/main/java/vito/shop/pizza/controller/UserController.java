@@ -4,10 +4,7 @@ package vito.shop.pizza.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import vito.shop.pizza.entity.User;
 import vito.shop.pizza.repository.UserRepository;
 import vito.shop.pizza.service.UserService;
@@ -23,6 +20,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @GetMapping("/start")
+    public void helloWorld(){
+        System.out.println("Hello world!!!");
+    }
 
     //register ne customers
     @PostMapping("/register")
