@@ -32,7 +32,7 @@ public class PizzaServiceImpl implements PizzaService {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        //create a pageable instance
+        //create a pageabale instance
         Pageable pageable =  PageRequest.of(pageNo, pageSize, sort);
         Page<Pizza> pizzas = pizzaRepository.findAll(pageable);
         //get content for page object
@@ -59,6 +59,12 @@ public class PizzaServiceImpl implements PizzaService {
     public PizzaDto getPizzaById(Long id) {
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(() -> new PizzaNotFoundException());
         return mapToDto(pizza);
+    }
+
+    @Override
+    public Pizza getById(Long id) {
+        Pizza pizza = pizzaRepository.findById(id).orElseThrow(() -> new PizzaNotFoundException());
+        return pizza;
     }
 
 

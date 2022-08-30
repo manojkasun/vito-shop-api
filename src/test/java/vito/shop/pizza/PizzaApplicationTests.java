@@ -6,11 +6,10 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import vito.shop.pizza.entity.Pizza;
-import vito.shop.pizza.payload.PizzaDto;
 import vito.shop.pizza.repository.PizzaRepository;
 import vito.shop.pizza.service.PizzaService;
 
-import javax.swing.text.html.Option;
+
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +30,7 @@ class PizzaApplicationTests {
 	@Test
 	public void testGetPizzaById_Success() {
 		String pizza_name = "cheese pizza";
-		PizzaDto pizza = pizzaService.getPizzaById(6L);
+		Pizza pizza = pizzaService.getById(3L);
 		assertEquals(pizza_name, pizza.getName() );
 	}
 
